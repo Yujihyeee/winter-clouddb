@@ -20,8 +20,14 @@ public class UserController {
     @GetMapping("/users/{id}")
     public ResponseEntity<UserSerializer> getById(@PathVariable long id) throws JsonProcessingException{
         User user = userService.findById(id).get();
-        UserSerializer userSerializer = new UserSerializer(user.getUserId(),
-                user.getUsername(), user.getPassword(), user.getName(), user.getEmail(), user.getRegDate());
+        UserSerializer userSerializer = UserSerializer.builder()
+                .userId(user.getUserId())
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .name(user.getName())
+                .email(user.getEmail())
+                .regDate(user.getRegDate())
+                .build();
         return new ResponseEntity<>(userSerializer, HttpStatus.OK);
     }
 }
