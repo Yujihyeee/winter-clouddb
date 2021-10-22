@@ -1,72 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
-export default function User() {
+export default function UserDetail() {
+    const SERVER = 'http://localhost:8080'
+    const history = useHistory()
+    const [detail, setDetail] = useState()
+
+    const fetchOne = () => {
+        const sessionUser = JSON.parse(localStorage.getItem('sessionUser')); 
+        alert('사용자 아이디: '+sessionUser.userId)
+        axios.get(`${SERVER}/users/${sessionUser.userId}`)
+        .then(res => {
+            setDetail(res.data)
+        })
+        .catch(err => {
+            alert(`${err}`)
+        })
+    }
+    useEffect(() => {
+        fetchOne()
+    }, [])
+
+
   return (
     <div>
-        <figure>
-            <img src="images/pf.png" alt=""/>
-            <figcaption>OnlineProfile</figcaption>
-        </figure>
-        <h1>Jihye Yu</h1>
-        <p>E-mail : rladnddl@naver.com</p>
-        <h2>Who I am?</h2>
-        <p>Hi. I am Jihye Yu.</p>
-        <h2>GitHub</h2>
+         <h1>회원정보</h1>
+    
         <ul>
-            <li><a href="https://github.com/Yujihyeee" target="_blank">GitHub</a>
+            <li>
+                <label>
+                    <span>회원번호 : {detail.userId} </span>
+                </label>
+                
             </li>
+            <li>
+                <label>
+                    <span>아이디 : {detail.username} </span>
+                </label>
+                
+            </li>
+            <li>
+                <label>
+                <span>이메일 :  {detail.email}  </span>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>비밀 번호 :  *******  </span>
+                </label>
+            </li>
+            <li>
+                <label>
+                <span>이름 : {detail.name} </span>
+                </label>
+            </li>
+           
+            <li>
+                <input type="button" value="회원정보수정" onClick={()=> history.push('/users/modify')}/>
+            </li>
+
         </ul>
-        <hr></hr>
-        <h2>Skills</h2>
-        <ul>
-            <li>Available languages
-                <ul>
-                    <li><mark>HTML</mark></li>
-                    <li><mark>CSS</mark></li>
-                    <li>JAVA</li>
-                    <li>Python</li>
-                    <li>MongoDB</li>
-                    <li>MySQL</li>
-                    <li></li>
-                </ul>
-            </li>
-            <li>Available Tools
-                <ul>
-                    <li>IntelliJ</li>
-                    <li>PyCharm</li>
-                    <li>Visual Studio Code</li>
-                    <li>Spring Boot</li>
-                    <li>Flask</li>
-                </ul>
-            </li>
-        </ul>
-        <h2>Academic</h2>
-        <table border="1">
-            <caption>Educational Background</caption>
-            <thead>
-                <tr>
-                    <th>School of origin</th>
-                    <th>Major</th>
-                    <th>Period</th>
-                    <th>Graduation classification</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>OOO high school</td>
-                    <td>Finance</td>
-                    <td>2011.03 ~ 2014.02</td>
-                    <td>Graduation</td>
-                </tr>
-                <tr>
-                    <td>OOO University</td>
-                    <td>Business Administration</td>
-                    <td>2019.09 ~ </td>
-                    <td>In school</td>
-                </tr>
-            </tbody>
-        </table>
+   
     </div>
   );
 }

@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'shop.tripn.api'
+group = 'net.zerotodev.api'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+	// implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	// implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -27,8 +27,11 @@ dependencies {
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.5.5'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
 	// testImplementation 'org.springframework.security:spring-security-test'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
 }
 
 test {

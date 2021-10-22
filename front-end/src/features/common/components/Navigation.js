@@ -7,13 +7,14 @@ export default function Navigation() {
         <Nav>
             <NavList>
                 <NavItem><Link to = '/home'>Home</Link></NavItem>
-                <NavItem><Link to = '/add'>Add</Link></NavItem>
-                <NavItem><Link to = '/login'>Login</Link></NavItem>
-                <NavItem><Link to = '/online-profile'>OnlineProfile</Link></NavItem>
-                <NavItem><Link to = '/course-register'>CourseRegister</Link></NavItem>
-                <NavItem><Link to = '/school-status'>SchoolStatus</Link></NavItem>
+                <NavItem><Link to="/users/add">UserAdd</Link></NavItem>
+                <NavItem><Link to="/users/detail">UserDetail</Link></NavItem>
+                <NavItem><Link to="/users/list">UserList</Link></NavItem>
+                <NavItem><Link to="/users/login">UserLogin</Link></NavItem>
+                <NavItem><Link to="/users/modify">UserModify</Link></NavItem>
+                <NavItem><Link to="/users/remove">UserRemove</Link></NavItem>
             </NavList>
-    </Nav>
+        </Nav>
     )
 }
 
