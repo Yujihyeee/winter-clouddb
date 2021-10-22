@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function UserDetail() {
     const SERVER = 'http://localhost:8080'
     const history = useHistory()
-    const [detail, setDetail] = useState()
+    const [detail, setDetail] = useState({})
 
     const fetchOne = () => {
         const sessionUser = JSON.parse(localStorage.getItem('sessionUser')); 

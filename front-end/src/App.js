@@ -2,22 +2,25 @@ import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom'
 import { UserAdd, UserDetail, UserList, UserLogin, UserModify, UserRemove } from 'features/user/index'
 import { Home, Navigation } from "features/common/index";
+import { BrowserRouter as Router } from 'react-router-dom'
 
-
-function App() {
+const App= () => {
   return (
-    <>
-  <Navigation/>
-    <Switch>
-      <Route exact path='/' component= { Home }/>
-      <Redirect from='/home' to= { '/' }/>
-      <Route exact path='/course-register' component= { UserAdd }/>
-      <Route exact path='/online-profile' component= { UserDetail }/>
-      <Route exact path='/login' component= { UserList }/>
-      <Route exact path='/join' component= { UserLogin }/>
-      <Route exact path='/school-status' component= { UserModify }/>
-      <Route exact path='/school-status' component= { UserRemove }/>
-    </Switch></>
+    <div className="App">
+      <Router>
+      <Navigation/>
+      <Switch>
+        <Route exact path='/' component= {Home}/>
+        <Redirect from='/home' to ={'/'}/>
+        <Route exact path='/users/add' component={UserAdd}/>
+        <Route exact path='/users/detail' component={UserDetail}/>
+        <Route exact path='/users/list' component={UserList}/>
+        <Route exact path='/users/login' component={UserLogin}/>
+        <Route exact path='/users/modify' component={UserModify}/>
+        <Route exact path='/users/remove' component={UserRemove}/>
+      </Switch>
+      </Router>
+    </div>
   );
 }
 
