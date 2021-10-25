@@ -1,5 +1,8 @@
 package shop.tripn.api.cloud.board.controller;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import shop.tripn.api.cloud.board.domain.Article;
 import shop.tripn.api.cloud.board.repository.BoardRepository;
 import shop.tripn.api.cloud.board.service.BoardService;
