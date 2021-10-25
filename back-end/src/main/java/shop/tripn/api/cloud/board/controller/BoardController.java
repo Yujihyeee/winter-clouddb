@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+@RequestMapping("/articles")
 @RequiredArgsConstructor
 @RestController
 public class BoardController implements CommonController<Article, Long> {
@@ -46,8 +47,8 @@ public class BoardController implements CommonController<Article, Long> {
         return ResponseEntity.ok(boardRepository.count());
     }
 
-    @Override
-    public ResponseEntity<String> deleteById(Long id) {
+    @Override @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Long id) {
         boardRepository.deleteById(id);
         return ResponseEntity.ok("SUCCESS");
     }
