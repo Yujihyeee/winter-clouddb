@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 import { useHistory  } from 'react-router-dom';
+
 export default function UserLogin() {
   const [login, setLogin] = useState({})
   const {username, password} = login

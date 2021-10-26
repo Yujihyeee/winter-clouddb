@@ -5,12 +5,12 @@ const userJoinPage = async (x) => {
   const res = await userAPI.userJoin(x)
   return res.data
 }
-const userFetchOnePage = async (x) => {
-  const res = await userAPI.userFetchOne(x)
+const userDetailPage = async (x) => {
+  const res = await userAPI.userDetail(x)
   return res.data
 }
-const userFetchListPage = async () => {
-  const res = await userAPI.userFetchList()
+const userListPage = async () => {
+  const res = await userAPI.userList()
   return res.data
 }
 const userLoginPage = async (x) => {
@@ -27,10 +27,37 @@ const userRemovePage = async (x) => {
 }
 
 export const joinPage = createAsyncThunk('users/join', userJoinPage)
-export const fetchOnePage = createAsyncThunk('users/one', userFetchOnePage)
-export const fetchListPage = createAsyncThunk('users/list', userFetchListPage)
+export const detailPage = createAsyncThunk('users/one', userDetailPage)
+export const listPage = createAsyncThunk('users/list', userListPage)
 export const loginPage = createAsyncThunk('users/login', userLoginPage)
 export const modifyPage = createAsyncThunk('users/modify', userModifyPage)
 export const removePage = createAsyncThunk('users/remove', userRemovePage)
 
+const userSlice = createSlice({
+  name : users, 
+  initialState: {
+    userState: {},
+    type: '',
+    keyword: '',
+    params: {}
+  },
+  reducers: {},
+  extraReducers: {
+    [joinPage.fulfilled]: (state, action) => {state.userState = action.payload},
+    [detailPage.fulfilled]: (state, {meta, payload}) => {state.userState = payload},
+    [listPage.fulfilled]: (state, {meta, payload}) => {state.pageResult = payload},
+    [loginPage.fulfilled]: (state, {meta, payload}) => {
+      state.userState = action.payload
+      window.localStorage.setItem('sessionUser', JSON.stringify(payload))},
+    [modifyPage.fulfilled]: (state, action) => {
+      state.userState = action.payload
+      window.localStorage.setItem('sessionUser', JSON.stringify(payload))},
+    [removePage.fulfilled]: (state, {meta, payload}) => {
+      state.userState = payload
+      window.localStorage.setItem('sessionUser', '')}
+  }
+})
+
+export const currentUserState = state => state.users.userState
+export const currentUserParam = state => state.users.param
 export default userSlice.reducer;

@@ -1,25 +1,28 @@
-
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHistory  } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { joinPage } from 'features/user/reducer/userSlice';
 
 export default function UserAdd() {
     const history = useHistory()
-    
+    const dispatch= useDispatch()
     const [join, setJoin] = useState({
         username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
     })
     const {username, password, email, name} = join
-    const handleChange = e => {
-        const { value, name } = e.target
-        setJoin({
-            ...join,
-            [name] : value
-        })
-    }
+    const handleChange = useCallback(
+        e => {
+            const { value, name } = e.target
+            setJoin({
+                ...join,
+                [name] : value
+            })
+        }, [join]
+    )
     const handleSubmit = e => {
         e.preventDefault()
         const joinRequest = {...join}
-        alert(`회원가입 정보: ${JSON.stringify(joinRequest)}`)
+
         userJoin(joinRequest)
         .then(res =>{
             alert('회원가입 성공')

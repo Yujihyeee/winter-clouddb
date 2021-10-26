@@ -1,7 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { UserListForm } from '..';
-
 
 export default function UserList() {
   const [list, setList] = useState([])
