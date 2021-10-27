@@ -8,7 +8,7 @@ export default function UserAdd() {
     const history = useHistory()
     const dispatch = useDispatch()
     const [join, setJoin] = useState({
-        username:'', password:'', email:'', name:'', regDate: ''
+        username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
     })
     const {username, password, email, name} = join
     const handleChange = useCallback(
@@ -23,17 +23,20 @@ export default function UserAdd() {
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        alert(`회원가입 ID 1: ${join.username}`)
-        const formData = new FormData()
-        formData.append('username', join.username)
-        formData.append('password', join.password)
-        formData.append('email', join.email)
-        formData.append('name', join.name)
-        formData.append('regDate', join.regDate)
-        alert(`회원가입 ID 2: ${formData.get('username')}`)
-        await dispatch(joinPage(formData))
+        e.stopPropagation()
+    
+        const json = {
+            'username': join.username,
+            'password': join.password,
+            'email': join.email,
+            'name': join.name,
+            'regDate': join.regDate
+        }
+        alert(`회원가입 정보: ${JSON.stringify(json)}`)
+        await dispatch(joinPage(json))
         alert(`${join.username} 회원가입 환영`)
         history.push('/users/login')
+
   }
 
   return (
@@ -63,9 +66,11 @@ export default function UserAdd() {
                     이름 : <input type="text" id="name" name="name" value={name} onChange={handleChange}/>
                 </label>
             </li>
+           
             <li>
                 <input type="submit" onClick={ e => handleSubmit(e)} value="회원가입"/>
             </li>
+
         </ul>
     </form>
     </div>

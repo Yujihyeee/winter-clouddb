@@ -37,7 +37,7 @@ const userSlice = createSlice({
   name : 'users', 
   initialState: {
     userState: {
-      username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
+      username:'', password:'', email:'', name:'', regDate: ''
     },
     type: '',
     keyword: '',
