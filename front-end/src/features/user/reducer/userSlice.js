@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { userAPI } from 'features/user/index';
+import { userAPI } from 'features/user';
 
 const userJoinPage = async (x) => {
   const res = await userAPI.userJoin(x)
@@ -49,7 +49,7 @@ const userSlice = createSlice({
     [detailPage.fulfilled]: (state, {meta, payload}) => {state.userState = payload},
     [listPage.fulfilled]: (state, {meta, payload}) => {state.pageResult = payload},
     [loginPage.fulfilled]: (state, {meta, payload}) => {
-      state.userState = action.payload
+      state.userState = payload
       window.localStorage.setItem('sessionUser', JSON.stringify(payload))},
     [modifyPage.fulfilled]: (state, action) => {
       state.userState = action.payload
