@@ -27,16 +27,18 @@ const userRemovePage = async (x) => {
 }
 
 export const joinPage = createAsyncThunk('users/join', userJoinPage)
-export const detailPage = createAsyncThunk('users/one', userDetailPage)
+export const detailPage = createAsyncThunk('users/detail', userDetailPage)
 export const listPage = createAsyncThunk('users/list', userListPage)
 export const loginPage = createAsyncThunk('users/login', userLoginPage)
 export const modifyPage = createAsyncThunk('users/modify', userModifyPage)
 export const removePage = createAsyncThunk('users/remove', userRemovePage)
 
 const userSlice = createSlice({
-  name : users, 
+  name : 'users', 
   initialState: {
-    userState: {},
+    userState: {
+      username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
+    },
     type: '',
     keyword: '',
     params: {}
@@ -51,7 +53,7 @@ const userSlice = createSlice({
       window.localStorage.setItem('sessionUser', JSON.stringify(payload))},
     [modifyPage.fulfilled]: (state, action) => {
       state.userState = action.payload
-      window.localStorage.setItem('sessionUser', JSON.stringify(payload))},
+      window.localStorage.setItem('sessionUser', JSON.stringify(action.payload))},
     [removePage.fulfilled]: (state, {meta, payload}) => {
       state.userState = payload
       window.localStorage.setItem('sessionUser', '')}

@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+
 export default function UserDetail() {
     const history = useHistory()
     const [detail, setDetail] = useState({
         userId:'', username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
     })
     
-    const fetchOne = () => {
+    const userDetail = () => {
         const sessionUser = JSON.parse(localStorage.getItem('sessionUser'))
-        userFetchOne(sessionUser) 
+        userDetail(sessionUser)
         .then(res => {
             setDetail(res.data)
         })
@@ -18,7 +19,7 @@ export default function UserDetail() {
         })
     }
     useEffect(() => {
-        fetchOne()
+        userDetail()
     }, [])
 
     const logout = e => {
@@ -30,7 +31,6 @@ export default function UserDetail() {
   return (
     <div>
          <h1>회원정보</h1>
-    
         <ul>
             <li>
                 <label>

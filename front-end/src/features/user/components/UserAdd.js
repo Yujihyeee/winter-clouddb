@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory  } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { joinPage } from 'features/user/reducer/userSlice';
+import { joinPage } from 'features/user/reducer/userSlice'
+
 
 export default function UserAdd() {
     const history = useHistory()
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
     const [join, setJoin] = useState({
-        username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
+        username:'', password:'', email:'', name:'', regDate: ''
     })
     const {username, password, email, name} = join
     const handleChange = useCallback(
@@ -18,20 +19,21 @@ export default function UserAdd() {
                 [name] : value
             })
         }, [join]
-    )
-    const handleSubmit = e => {
+    ) 
+    
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const joinRequest = {...join}
-
-        userJoin(joinRequest)
-        .then(res =>{
-            alert('회원가입 성공')
-            history.push('/users/login')
-        })
-        .catch(err =>{
-            alert(`회원가입 실패 : ${err}`)
-        })
-
+        alert(`회원가입 ID 1: ${join.username}`)
+        const formData = new FormData()
+        formData.append('username', join.username)
+        formData.append('password', join.password)
+        formData.append('email', join.email)
+        formData.append('name', join.name)
+        formData.append('regDate', join.regDate)
+        alert(`회원가입 ID 2: ${formData.get('username')}`)
+        await dispatch(joinPage(formData))
+        alert(`${join.username} 회원가입 환영`)
+        history.push('/users/login')
   }
 
   return (
@@ -61,11 +63,9 @@ export default function UserAdd() {
                     이름 : <input type="text" id="name" name="name" value={name} onChange={handleChange}/>
                 </label>
             </li>
-           
             <li>
-                <input type="submit" value="회원가입"/>
+                <input type="submit" onClick={ e => handleSubmit(e)} value="회원가입"/>
             </li>
-
         </ul>
     </form>
     </div>
