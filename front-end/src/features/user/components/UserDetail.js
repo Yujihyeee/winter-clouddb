@@ -49,7 +49,7 @@ export default function UserDetail() {
             </li>
             <li>
                 <label>
-                    <span>비밀 번호 :  *******  </span>
+                    <span>비밀번호 :  *******  </span>
                 </label>
             </li>
             <li>

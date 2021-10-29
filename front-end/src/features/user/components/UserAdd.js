@@ -58,7 +58,7 @@ export default function UserAdd() {
             </li>
             <li>
                 <label>
-                    비밀 번호 : <input type="password" id="password" name="password" value={password} onChange={handleChange}/>
+                    비밀번호 : <input type="password" id="password" name="password" value={password} onChange={handleChange}/>
                 </label>
             </li>
             <li>

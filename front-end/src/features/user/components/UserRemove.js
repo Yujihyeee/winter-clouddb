@@ -28,12 +28,12 @@ export default function UserRemove() {
   }
   return (
     <div>
-      <h1>회원탈퇴</h1>
+      <h1>회원 탈퇴</h1>
       <form method="DELETE">
     <ul>
         <li>
               <label>
-                    <span>사용자아이디 : {sessionUser.username} </span>
+                    <span>사용자 아이디 : {sessionUser.username} </span>
                 </label>
             </li>
         <li><label for="pw">비밀번호 확인</label>

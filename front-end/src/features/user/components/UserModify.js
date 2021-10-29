@@ -27,12 +27,12 @@ export default function UserModify() {
         alert(`회원수정 정보: ${JSON.stringify(modifyRequest)}`)
         UserModify(modifyRequest)
         .then(res =>{
-            alert('회원 정보 수정 성공')
+            alert('회원정보 수정 성공')
             localStorage.setItem('sessionUser', JSON.stringify(res.data))
             history.push("/users/detail")
         })
         .catch(err =>{
-            alert(`회원수정 실패 : ${err}`)
+            alert(`회원정보 수정 실패 : ${err}`)
         })
   }
 
@@ -60,7 +60,7 @@ export default function UserModify() {
             </li>
             <li>
                 <label>
-                    비밀 번호 : <input type="password" id="password" name="password" placeholder={sessionUser.password} 
+                    비밀번호 : <input type="password" id="password" name="password" placeholder={sessionUser.password} 
                     value={password}
                     onChange={handleChange}/>
                 </label>
