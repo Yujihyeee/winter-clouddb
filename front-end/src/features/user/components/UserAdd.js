@@ -2,8 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { joinPage } from 'features/user/reducer/userSlice'
-import { useForm } from 'react-hook-form'
-
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components'
 
 export default function UserAdd() {
     const dispatch = useDispatch()
