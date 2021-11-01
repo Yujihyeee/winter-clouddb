@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { userAPI } from 'features/user';
 
 const userJoinPage = async (x) => {
-  const res = await userAPI.userJoin(x)
-  return res.data
+   const res = await userAPI.userJoin(x)
+   return res.data
 }
 const userDetailPage = async (x) => {
   const res = await userAPI.userDetail(x)
@@ -14,7 +14,7 @@ const userListPage = async () => {
   return res.data
 }
 const userLoginPage = async (x) => {
-  const res = await userAPI.userLogin(x)
+  const res = await userAPI.userLogin(x) 
   return res.data
 }
 const userModifyPage = async (x) => {
@@ -32,19 +32,14 @@ export const listPage = createAsyncThunk('users/list', userListPage)
 export const loginPage = createAsyncThunk('users/login', userLoginPage)
 export const modifyPage = createAsyncThunk('users/modify', userModifyPage)
 export const removePage = createAsyncThunk('users/remove', userRemovePage)
-export const logout = () => {
-    window.localStorage.setItem('sessionUser','')
-    window.location.href = '/home'
-}
 
 const changeNull = ls =>{
   for(const i of ls ){
     document.getElementById(i).value = ''
   }
 }
-
 const userSlice = createSlice({
-  name : 'users', 
+  name: 'users',
   initialState: {
     userState: {
       username:'', password:'', email:'', name:'', regDate: ''
@@ -55,10 +50,13 @@ const userSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [joinPage.fulfilled]: (state, action) => {state.userState = action.payload},
-    [detailPage.fulfilled]: (state, {meta, payload}) => {state.userState = payload},
-    [listPage.fulfilled]: (state, {meta, payload}) => {state.pageResult = payload},
-    [loginPage.fulfilled]: (state, {meta, payload}) => {
+    [joinPage.fulfilled]: ( state, action ) => { 
+      state.userState = action.payload 
+      window.location.href = `/users/login`
+    },
+    [detailPage.fulfilled]: ( state, {meta, payload} ) => { state.userState = payload},
+    [listPage.fulfilled]: ( state, {meta, payload} ) => { state.pageResult = payload },
+    [loginPage.fulfilled]: ( state, {meta, payload} ) => {
       state.userState = payload
       window.localStorage.setItem('sessionUser', JSON.stringify(payload))
       if(payload.username != null){
@@ -69,15 +67,16 @@ const userSlice = createSlice({
         changeNull(['username','password'])
       }
     },
-    [modifyPage.fulfilled]: (state, action) => {
-      state.userState = action.payload
-      window.localStorage.setItem('sessionUser', JSON.stringify(action.payload))},
-    [removePage.fulfilled]: (state, {meta, payload}) => {
+    [modifyPage.fulfilled]: ( state, action ) => { 
+      state.userState = action.payload 
+      window.localStorage.setItem('sessionUser', JSON.stringify(action.payload))
+    },
+    [removePage.fulfilled]: ( state, {meta, payload }) => { 
       state.userState = payload
-      window.localStorage.setItem('sessionUser', '')}
+      window.localStorage.setItem('sessionUser', '')
+    }
   }
 })
-
 export const currentUserState = state => state.users.userState
 export const currentUserParam = state => state.users.param
 export default userSlice.reducer;

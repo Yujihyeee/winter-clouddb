@@ -37,7 +37,6 @@ public class UserController implements CommonController<User, Long> {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-
     @PostMapping
     @Override
     public ResponseEntity<String> save(@RequestBody User user) {
@@ -67,6 +66,7 @@ public class UserController implements CommonController<User, Long> {
     public ResponseEntity<Long> count() {
         return ResponseEntity.ok(userRepository.count());
     }
+
     @DeleteMapping("/{id}")
     @Override
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
