@@ -7,12 +7,13 @@ import styled from 'styled-components'
 export default function UserLogin() {
     const dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
     return (
         <div>
             <h1>로그인</h1>
             <form method='POST'
                 onSubmit={
-                    handleSubmit(async (data) => { await dispatch(loginPage(data)) })}>
+                    handleSubmit(async (data) => {await dispatch(loginPage(data))})}>
                 <ul>
                     <li>
                         <label>아이디 : </label>

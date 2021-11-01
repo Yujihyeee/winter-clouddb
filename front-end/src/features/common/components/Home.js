@@ -1,18 +1,26 @@
 import { Logout } from 'features/user';
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory  } from 'react-router-dom';
 export default function Home() {
   const history = useHistory()
-
+  const [sessionName, setSessionName] = useState('')
+  useEffect(() => {
+    if(localStorage.length > 0){
+      const sessionUser = JSON.parse(localStorage.getItem('sessionUser'))
+      setSessionName(sessionUser.name)
+    }else{
+      setSessionName('None')
+    }
+  });
   return (
     <div>
-      {localStorage.length > 0 && <Logout />}
-      <h1>시간이란...</h1>
-      <p>내일 죽을 것처럼 오늘을 살고
-        영원히 살 것처럼 내일을 꿈꾸어라.</p>
-
-      <button onClick={e => history.push('/users/add')}>회원가입</button>
-      <button onClick={e => history.push('/users/login')}>로그인</button>
+      {sessionName !== 'None' ? <><h1> {sessionName} 님 접속중</h1> <Logout/></>: <>접속자 없음</>}
+      <h1>시간이란..</h1>
+      <p>내일 죽을 것처럼 오늘을 살고 
+          영원히 살 것처럼 내일을 꿈꾸어라.</p>
+      {localStorage.length > 0 ? <Logout/> :
+       <><button onClick = {e => history.push('/users/add')}>회원가입</button>
+       <button onClick = {e => history.push('/users/login')}>로그인</button></>}
     </div>
   );
 }
