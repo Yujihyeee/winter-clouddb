@@ -35,4 +35,5 @@ const NavItem = styled.li`
     margin-left: 20px;
     margin-top: 30px;
     display: flex;
+    font-size:20px;
 `

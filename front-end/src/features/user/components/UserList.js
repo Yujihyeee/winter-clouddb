@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { UserListForm } from '..';
+import { listPage } from '../reducer/userSlice';
 
 export default function UserList() {
   const [list, setList] = useState([])
@@ -12,7 +14,7 @@ export default function UserList() {
   }
 
   useEffect(() =>{
-    userList() 
+    dispatch(listPage())
   }, [])
   return (
     <div>

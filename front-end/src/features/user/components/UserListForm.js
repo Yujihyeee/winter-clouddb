@@ -1,6 +1,8 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 const UserListForm = ({list}) => {
+    //const dispatch = useDispatch();
     return (<table border='1px' style={{textAlign:'center'}}>
     <thead>
     <tr><th>사용자번호</th>

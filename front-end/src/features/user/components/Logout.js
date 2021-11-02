@@ -8,7 +8,6 @@ const Logout = () => {
             e.preventDefault()
             e.stopPropagation()
             localStorage.clear(e)
-
             history.push('/')
         }}> 로그아웃
     </button>
