@@ -24,12 +24,12 @@ export default function UserModify() {
     return (
         <div>
             <h1>회원정보 수정</h1>
-            <form onSubmit={useCallback(
+            <form method='PUT' onSubmit={useCallback(
                 e => {
                     e.preventDefault()
                     dispatch(modifyPage({ ...modify }))
                 }
-            )} method='PUT'>
+            )} >
                 <ul>
                     <li>
                         <label>
@@ -50,7 +50,7 @@ export default function UserModify() {
                     </li>
                     <li>
                         <label>
-                            비밀번호 : <input type="password" id="password" name="password" placeholder={sessionUser.password}
+                            비밀 번호 : <input type="password" id="password" name="password" placeholder={sessionUser.password}
                                 value={password}
                                 onChange={handleChange} />
                         </label>
@@ -62,9 +62,11 @@ export default function UserModify() {
                                 onChange={handleChange} />
                         </label>
                     </li>
+
                     <li>
                         <input type="submit" value="수정확인" />
                     </li>
+
                 </ul>
             </form>
         </div>

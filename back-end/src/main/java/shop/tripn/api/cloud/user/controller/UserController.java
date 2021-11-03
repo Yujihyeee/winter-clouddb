@@ -1,14 +1,19 @@
 package shop.tripn.api.cloud.user.controller;
 import shop.tripn.api.cloud.common.CommonController;
 import shop.tripn.api.cloud.user.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import lombok.RequiredArgsConstructor;
 import shop.tripn.api.cloud.user.domain.User;
 import shop.tripn.api.cloud.user.domain.UserDto;
 import shop.tripn.api.cloud.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +41,7 @@ public class UserController implements CommonController<User, Long> {
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userRepository.findAll());
     }
+
 
     @PostMapping
     @Override
@@ -66,10 +72,10 @@ public class UserController implements CommonController<User, Long> {
     public ResponseEntity<Long> count() {
         return ResponseEntity.ok(userRepository.count());
     }
-
     @DeleteMapping("/{id}")
     @Override
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
+        System.out.println(" id " + id);
         userRepository.deleteById(id);
         return ResponseEntity.ok("SUCCESS");
     }
