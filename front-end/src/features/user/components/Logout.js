@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 
 const Logout = () => {
     const history = useHistory()
+    
     return <button
         onClick={e => {
             e.preventDefault()

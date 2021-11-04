@@ -1,14 +1,13 @@
 import React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom'
-import { UserAdd, UserDetail, UserList, UserLogin, UserModify, UserRemove } from 'features/user/index'
-import { Home, Navigation } from "features/common/index";
+import { Route, Redirect, Switch } from 'react-router';
+import { Home } from 'features/common';
+import { UserAdd, UserDetail, UserList, UserLogin, UserModify, UserRemove } from 'features/user'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 const App = () => {
   return (
     <div className="App">
       <Router>
-        <Navigation />
         <Switch>
           <Route exact path='/' component={Home} />
           <Redirect from='/home' to={'/'} />

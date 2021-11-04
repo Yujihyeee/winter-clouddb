@@ -1,39 +1,37 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom'
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export default function Navigation() {
+const Navigation = () => {
     return (
-        <Nav>
-            <NavList>
-                <NavItem><Link to='/home'>Home</Link></NavItem>
-                <NavItem><Link to="/users/add">UserAdd</Link></NavItem>
-                <NavItem><Link to="/users/detail">UserDetail</Link></NavItem>
-                <NavItem><Link to="/users/list">UserList</Link></NavItem>
-                <NavItem><Link to="/users/login">UserLogin</Link></NavItem>
-                <NavItem><Link to="/users/modify">UserModify</Link></NavItem>
-                <NavItem><Link to="/users/remove">UserRemove</Link></NavItem>
-            </NavList>
-        </Nav>
-    )
+        <div>
+            <Ul>
+                <Li><Link to="/home" style={{ textDecoration: 'none' }}>Home</Link></Li>
+                {localStorage.length > 0 ? <></>
+                    : <Li><Link to="/users/add" style={{ textDecoration: 'none' }}>UserAdd</Link></Li>}
+                <Li><Link to="/users/detail" style={{ textDecoration: 'none' }}>UserDetail</Link></Li>
+                <Li><Link to="/users/list" style={{ textDecoration: 'none' }}>UserList</Link></Li>
+                {localStorage.length > 0 ? <></>
+                    : <Li><Link to="/users/login" style={{ textDecoration: 'none' }}>UserLogin</Link></Li>}
+                <Li><Link to="/users/modify" style={{ textDecoration: 'none' }}>UserModify</Link></Li>
+                <Li><Link to="/users/remove" style={{ textDecoration: 'none' }}>UserRemove</Link></Li>
+            </Ul>
+        </div>
+    );
 }
 
-const Nav = styled.div`
-    width: 100%;
-    height: 100px;
-    border-bottom: 1px soild #d1d8e4;
+const Ul = styled.ul`
+background-color: #FFDAB9;
+text-decoration:none
+text-align: center;
+`
+const Li = styled.li`
+float: left;
+margin-left: 1em;
+font-size:20px;
+text-align:center;
+display:inline-block;
 
 `
-const NavList = styled.ul`
-    width: 1080px;
-    display: flex;
-    margin: 0 auto;
-`
 
-const NavItem = styled.li`
-    width: auto;
-    margin-left: 20px;
-    margin-top: 30px;
-    display: flex;
-    font-size:20px;
-`
+export default Navigation
