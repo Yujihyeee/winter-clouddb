@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { list } from 'features/user/reducer/userSlice';
+import { list } from 'features/user/reducer/userSlice'
 
 const UserListForm = () => {
+
     const dispatch = useDispatch()
     const users = useSelector(state => state.user.usersState);
     const type = useSelector(state => state.user.type)
@@ -28,6 +29,7 @@ const UserListForm = () => {
                     <td>{i.name}</td>
                     <td>{i.email}</td></tr>
             ))}
+
         </tbody>
     </table>)
 }

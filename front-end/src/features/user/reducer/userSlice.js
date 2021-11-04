@@ -47,9 +47,8 @@ const userSlice = createSlice({
   name: 'users',
   initialState: {
     userState: {
-      username: '', password: '', email: '', name: '', regDate: ''
-    },
-
+      username: '', password: '', email: '', name: '', regDate: ''},
+    usersState: [],
     type: '',
     keyword: '',
     params: {}

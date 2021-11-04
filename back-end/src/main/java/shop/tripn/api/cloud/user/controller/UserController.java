@@ -49,7 +49,6 @@ public class UserController implements CommonController<User, Long> {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-
     @PostMapping
     @Override
     public ResponseEntity<String> save(@RequestBody User user) {

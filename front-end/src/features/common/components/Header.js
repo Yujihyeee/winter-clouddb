@@ -17,7 +17,6 @@ const Header = () => {
                     <Span><button onClick={e => window.location.href = `/users/add`}>회원가입</button>
                         <button onClick={e => window.location.href = `/users/login`}>로그인</button></Span>
                 </>}
-
         </header>
         </>
     )

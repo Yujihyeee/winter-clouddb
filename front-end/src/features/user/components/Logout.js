@@ -1,9 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router-dom';
 
 const Logout = () => {
     const history = useHistory()
-    
+
     return <button
         onClick={e => {
             e.preventDefault()
