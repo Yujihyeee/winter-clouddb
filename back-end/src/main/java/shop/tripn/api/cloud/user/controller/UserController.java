@@ -45,9 +45,9 @@ public class UserController implements CommonController<User, Long> {
     @GetMapping("/list/{page}")
 
     public ResponseEntity<List<User>> getList(@PathVariable int page) {
-        System.out.println("::::::: PageNumber :::::::: "+page);
         return ResponseEntity.ok(userRepository.findAll());
     }
+
 
     @PostMapping
     @Override
@@ -90,7 +90,6 @@ public class UserController implements CommonController<User, Long> {
     @DeleteMapping("/{id}")
     @Override
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
-
         userRepository.deleteById(id);
         return ResponseEntity.ok("SUCCESS");
     }
